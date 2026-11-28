@@ -12,7 +12,7 @@ const text = $('#text');
 const amount = $('#amount');
 const modal = $('#modalOverlay');
 const openModalBtn = $('#openModal');
-const closeModalBtn = $('#closeModal');
+const closeModalBtn = $('#close-btn');
 const searchInput = $('#search-input');
 const filterBtns = $$('.filter-btn');
 
@@ -39,9 +39,9 @@ function addTransaction(e) {
         id: Math.floor(Math.random() * 100000000),
         text: text.value,
         amount: amount.value,
-        type: "income",
+        type: type,
         category: category,
-        date: new Date().toLocalDateString()
+        date: new Date().toLocaleDateString()
     };
 
     transactions.push(transaction);
@@ -53,13 +53,13 @@ function addTransaction(e) {
 }
 
 function removeTransaction(id) {
-    transactions = transactions.filter(t => t.id !== id);
+    transactions = transactions.filter(t => Number(t.id) !== Number(id));
     updateLocalStorage();
     init();
 }
 
 function updateLocalStorage() {
-    localStorage.setItem('transactions', transactions);
+    localStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
 // Calculate Totals
@@ -71,11 +71,15 @@ function updateValues() {
     let inc = 0;
     let exp = 0;
 
-    for (let i = 1; i < transactions.length; i++) {
+    for (let i = 0; i < transactions.length; i++) {
         const amt = parseFloat(transactions[i].amount);
-        total += amt;
-        if (amt > 0) inc += amt;
-        else exp += amt;
+        if (transactions[i].type==="income"){
+            total += amt;
+            inc+=amt;
+        }else{
+            total-=amt;
+            exp+=amt;
+        }
     }
 
     balance.innerText = `$${total.toFixed(2)}`;
@@ -92,7 +96,7 @@ function renderTransactions() {
     // Filter Search
     const query = searchInput.value;
     if (query) {
-        filtered = filtered.filter(t => t.info.includes(query));
+        filtered = filtered.filter(t => t.text.toLowerCase().includes(query.toLowerCase()));
     }
 
     if (currentFilter !== 'all') {
@@ -100,8 +104,8 @@ function renderTransactions() {
     }
 
     filtered.forEach(transaction => {
-        const sign = transaction.amount < 0 ? '-' : '+';
-        const itemClass = transaction.amount < 0 ? 'amount-expense' : 'amount-income';
+        const sign = (transaction.type === 'expense') ? '-' : '+';
+        const itemClass = (transaction.type === 'expense')? 'amount-expense' : 'amount-income';
         const item = document.createElement('li');
 
         item.classList.add('transaction-item');

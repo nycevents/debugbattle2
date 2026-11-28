@@ -26,7 +26,8 @@ body {
     justify-content: center;
     padding: 4rem 1rem; /* More top/bottom padding */
     line-height: 1.5;
-    overflow: hidden; 
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .container {
@@ -50,7 +51,6 @@ header {
 
 .logo-icon {
     font-size: 1rem;
-    filter: grayscale(1);
 }
 
 .logo h1 {
@@ -62,9 +62,7 @@ header {
 
 .balance-card p {
     color: var(--text-secondary);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
 }
 
@@ -93,10 +91,8 @@ header {
 }
 
 .stat-info span {
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
 }
 
 .stat-info h3 {
@@ -104,9 +100,8 @@ header {
     font-weight: 600;
 }
 
-/* BUG #18: Stat Inversion (Inverted colors) */
-.income h3 { color: var(--text-secondary); }
-.expense h3 { color: var(--text-primary); }
+.income h3 { color: var(--text-primary); }
+.expense h3 { color: var(--text-secondary); }
 
 /* Controls */
 .controls {
@@ -141,8 +136,6 @@ header {
     cursor: pointer;
     font-size: 0.8rem;
     transition: opacity 0.2s;
-    /* BUG #13: Click through button */
-    pointer-events: none;
 }
 
 .btn-add:hover {
@@ -165,10 +158,8 @@ header {
 }
 
 .section-header h2 {
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary);
+    font-size: 1.2rem;
+    color: var(--text-primary);
 }
 
 .filter-btns {
@@ -198,8 +189,7 @@ header {
     list-style: none;
     display: flex;
     flex-direction: column;
-    /* BUG #3: Overflow hidden hides items */
-    overflow: hidden; 
+    overflow: auto; 
     padding-right: 5px;
 }
 
@@ -222,8 +212,6 @@ header {
 
 .item-icon {
     font-size: 1.25rem;
-    filter: grayscale(1);
-    opacity: 0.7;
 }
 
 .item-details p {
@@ -287,8 +275,6 @@ header {
     width: 90%;
     max-width: 400px;
     padding: 2.5rem;
-    /* BUG #2: Overriding visibility logic */
-    display: none;
 }
 
 .modal-header {
@@ -334,10 +320,9 @@ header {
     outline: none;
 }
 
-/* BUG #16: Invisible Dropdown Options */
 .form-group select option {
     background: #0f172a;
-    color: #0f172a;
+    color: #ffffff;
 }
 
 .type-selector {
