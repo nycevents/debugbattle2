@@ -59,7 +59,7 @@ function removeTransaction(id) {
 }
 
 function updateLocalStorage() {
-    localStorage.setItem('transactions', transactions);
+    localStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
 // Calculate Totals
@@ -73,9 +73,13 @@ function updateValues() {
 
     for (let i = 0; i < transactions.length; i++) {
         const amt = parseFloat(transactions[i].amount);
-        total += amt;
-        if (amt > 0) inc += amt;
-        else exp += amt;
+        if (transactions[i].type==="income"){
+            total += amt;
+            inc+=amt;
+        }else{
+            total-=amt;
+            exp+=amt;
+        }
     }
 
     balance.innerText = `$${total.toFixed(2)}`;
