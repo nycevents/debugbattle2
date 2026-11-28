@@ -39,7 +39,7 @@ function addTransaction(e) {
         id: Math.floor(Math.random() * 100000000),
         text: text.value,
         amount: amount.value,
-        type: "income",
+        type: type,
         category: category,
         date: new Date().toLocalDateString()
     };
