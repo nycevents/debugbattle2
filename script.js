@@ -12,7 +12,7 @@ const text = $('#text');
 const amount = $('#amount');
 const modal = $('#modalOverlay');
 const openModalBtn = $('#openModal');
-const closeModalBtn = $('#closeModal');
+const closeModalBtn = $('#close-btn');
 const searchInput = $('#search-input');
 const filterBtns = $$('.filter-btn');
 
@@ -31,17 +31,21 @@ let currentFilter = 'all';
 
 function addTransaction(e) {
 
+    e.preventDefault();
+
     const type = $('input[name="transaction-type"]:checked').value;
 
     const category = $('#category').value;
 
+    const value = parseFloat(amount.value);
+
     const transaction = {
         id: Math.floor(Math.random() * 100000000),
         text: text.value,
-        amount: amount.value,
-        type: "income",
+        amount: type === 'expense' ? -value : value,
+        type: type,
         category: category,
-        date: new Date().toLocalDateString()
+        date: new Date().toLocaleDateString()
     };
 
     transactions.push(transaction);
@@ -59,7 +63,7 @@ function removeTransaction(id) {
 }
 
 function updateLocalStorage() {
-    localStorage.setItem('transactions', transactions);
+    localStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
 // Calculate Totals
@@ -71,7 +75,7 @@ function updateValues() {
     let inc = 0;
     let exp = 0;
 
-    for (let i = 1; i < transactions.length; i++) {
+    for (let i = 0; i < transactions.length; i++) {
         const amt = parseFloat(transactions[i].amount);
         total += amt;
         if (amt > 0) inc += amt;
@@ -92,7 +96,7 @@ function renderTransactions() {
     // Filter Search
     const query = searchInput.value;
     if (query) {
-        filtered = filtered.filter(t => t.info.includes(query));
+        filtered = filtered.filter(t => t.text.toLowerCase().includes(query.toLowerCase()));;
     }
 
     if (currentFilter !== 'all') {
@@ -114,7 +118,7 @@ function renderTransactions() {
             <div class="item-amount ${itemClass}">
                 ${sign}$${Math.abs(transaction.amount)}
             </div>
-            <button class="delete-btn" onclick="removeTransaction('${transaction.id}')">
+            <button class="delete-btn" onclick="removeTransaction(${transaction.id})">
                 🗑️
             </button>
         `;
