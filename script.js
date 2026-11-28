@@ -96,7 +96,7 @@ function renderTransactions() {
     // Filter Search
     const query = searchInput.value;
     if (query) {
-        filtered = filtered.filter(t => t.text.includes(query));
+        filtered = filtered.filter(t => t.text.toLowerCase().includes(query.toLowerCase()));
     }
 
     if (currentFilter !== 'all') {
