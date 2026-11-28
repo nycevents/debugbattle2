@@ -104,9 +104,8 @@ header {
     font-weight: 600;
 }
 
-/* BUG #18: Stat Inversion (Inverted colors) */
-.income h3 { color: var(--text-secondary); }
-.expense h3 { color: var(--text-primary); }
+.income h3 { color: var(--text-primary); }
+.expense h3 { color: var(--text-secondary); }
 
 /* Controls */
 .controls {
