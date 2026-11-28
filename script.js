@@ -53,7 +53,7 @@ function addTransaction(e) {
 }
 
 function removeTransaction(id) {
-    transactions = transactions.filter(t => t.id !== id);
+    transactions = transactions.filter(t => t.id !== Number(id));
     updateLocalStorage();
     init();
 }
