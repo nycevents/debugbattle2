@@ -62,9 +62,7 @@ header {
 
 .balance-card p {
     color: var(--text-secondary);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
 }
 
@@ -93,10 +91,8 @@ header {
 }
 
 .stat-info span {
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
 }
 
 .stat-info h3 {
