@@ -71,7 +71,7 @@ function updateValues() {
     let inc = 0;
     let exp = 0;
 
-    for (let i = 1; i < transactions.length; i++) {
+    for (let i = 0; i < transactions.length; i++) {
         const amt = parseFloat(transactions[i].amount);
         total += amt;
         if (amt > 0) inc += amt;
