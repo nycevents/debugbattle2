@@ -1,5 +1,5 @@
 :root {
-    --bg: #000000;
+    --bg: #181818;
     --surface: #0a0a0a;
     --border: #262626;
     --text-primary: #ffffff;
@@ -89,12 +89,12 @@ header {
 }
 
 .stat-icon {
-    display: none; /* Minimalist: hide icons */
+    display: block; /* Minimalist: hide icons */
 }
 
 .stat-info span {
     font-size: 0.75rem;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -105,8 +105,8 @@ header {
 }
 
 /* BUG #18: Stat Inversion (Inverted colors) */
-.income h3 { color: var(--text-secondary); }
-.expense h3 { color: var(--text-primary); }
+.income h3 { color: var(--text-primary); }
+.expense h3 { color: var(--text-secondary); }
 
 /* Controls */
 .controls {
@@ -142,7 +142,7 @@ header {
     font-size: 0.8rem;
     transition: opacity 0.2s;
     /* BUG #13: Click through button */
-    pointer-events: none;
+    /* pointer-events: none; */
 }
 
 .btn-add:hover {
@@ -154,7 +154,11 @@ header {
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 340px); /* Increased available height for list */
+    /* Increased available height for list */
+    /* fixed */
+    min-height: 250px;
+    height: calc(100vh - 450px);
+    overflow-y: auto;
 }
 
 .section-header {
@@ -199,7 +203,8 @@ header {
     display: flex;
     flex-direction: column;
     /* BUG #3: Overflow hidden hides items */
-    overflow: hidden; 
+    /* fixed */
+    overflow: scroll; 
     padding-right: 5px;
 }
 
@@ -269,18 +274,18 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s;
     /* BUG #10: Z-index too low */
-    z-index: 1;
+    /* fixed */
+    z-index: 100;
 }
-
 .modal-overlay.active {
     opacity: 1;
     visibility: visible;
 }
-
 .modal-content {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -288,7 +293,9 @@ header {
     max-width: 400px;
     padding: 2.5rem;
     /* BUG #2: Overriding visibility logic */
-    display: none;
+    /* fixed */
+    /* display: flex; */
+    /* display: none; */
 }
 
 .modal-header {
@@ -335,9 +342,10 @@ header {
 }
 
 /* BUG #16: Invisible Dropdown Options */
+/* fixed */
 .form-group select option {
     background: #0f172a;
-    color: #0f172a;
+    color: #b0b0b0;
 }
 
 .type-selector {
