@@ -329,7 +329,6 @@ header {
     outline: none;
 }
 
-/* BUG #16: Invisible Dropdown Options */
 .form-group select option {
     background: #ffffff;
     color: #ffffff;
