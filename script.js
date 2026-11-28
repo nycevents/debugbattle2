@@ -104,8 +104,8 @@ function renderTransactions() {
     }
 
     filtered.forEach(transaction => {
-        const sign = transaction.amount < 0 ? '-' : '+';
-        const itemClass = transaction.amount < 0 ? 'amount-expense' : 'amount-income';
+        const sign = (transaction.type === 'expense') ? '-' : '+';
+        const itemClass = (transaction.type === 'expense')? 'amount-expense' : 'amount-income';
         const item = document.createElement('li');
 
         item.classList.add('transaction-item');
