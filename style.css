@@ -331,8 +331,8 @@ header {
 
 /* BUG #16: Invisible Dropdown Options */
 .form-group select option {
-    background: #0f172a;
-    color: #0f172a;
+    background: #ffffff;
+    color: #ffffff;
 }
 
 .type-selector {
