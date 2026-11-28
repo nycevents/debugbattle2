@@ -41,7 +41,7 @@ function addTransaction(e) {
         amount: amount.value,
         type: type,
         category: category,
-        date: new Date().toLocalDateString()
+        date: new Date().toLocaleDateString()
     };
 
     transactions.push(transaction);
