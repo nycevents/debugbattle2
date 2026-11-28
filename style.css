@@ -285,8 +285,6 @@ header {
     width: 90%;
     max-width: 400px;
     padding: 2.5rem;
-    /* BUG #2: Overriding visibility logic */
-    display: none;
 }
 
 .modal-header {
