@@ -196,8 +196,7 @@ header {
     list-style: none;
     display: flex;
     flex-direction: column;
-    /* BUG #3: Overflow hidden hides items */
-    overflow: hidden; 
+    overflow: auto; 
     padding-right: 5px;
 }
 
