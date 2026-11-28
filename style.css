@@ -26,7 +26,8 @@ body {
     justify-content: center;
     padding: 4rem 1rem; /* More top/bottom padding */
     line-height: 1.5;
-    overflow: hidden; 
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .container {
