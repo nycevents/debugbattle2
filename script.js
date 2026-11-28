@@ -12,7 +12,7 @@ const text = $('#text');
 const amount = $('#amount');
 const modal = $('#modalOverlay');
 const openModalBtn = $('#openModal');
-const closeModalBtn = $('#closeModal');
+const closeModalBtn = $('#close-btn');
 const searchInput = $('#search-input');
 const filterBtns = $$('.filter-btn');
 
