@@ -96,7 +96,7 @@ function renderTransactions() {
     // Filter Search
     const query = searchInput.value;
     if (query) {
-        filtered = filtered.filter(t => t.info.includes(query));
+        filtered = filtered.filter(t => t.text.includes(query));
     }
 
     if (currentFilter !== 'all') {
